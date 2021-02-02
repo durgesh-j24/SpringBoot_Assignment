@@ -2,7 +2,9 @@ package com.projectfirst.springbootproject;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -118,12 +120,16 @@ public class BookTest {
 	
 	@Test
 	public void testDeleteBook() throws Exception {
-		Book b=new Book(3,"shiva",200);
-		
+			
 		String url="/BankData/books/3";
-		Mockito.when(bookservice.deleteBook(3)).thenReturn("SUCCESS");
-		mockMvc.perform(MockMvcRequestBuilders.delete(url))
-        .andExpect(status().isOk());
+		MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.delete(url)).andReturn();
+		
+		int status = mvcResult.getResponse().getStatus();
+		
+		assertEquals(200, status);
+		//String content = mvcResult.getResponse().getContentAsString();
+		//assertEquals(content,"deleted successsfully");
+
 	}
 	
 	private String mapToJson(Object object) throws JsonProcessingException {
