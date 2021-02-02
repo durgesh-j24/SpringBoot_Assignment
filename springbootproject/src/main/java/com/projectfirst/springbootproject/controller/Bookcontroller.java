@@ -1,5 +1,6 @@
 package com.projectfirst.springbootproject.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +11,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projectfirst.springbootproject.model.Book;
 import com.projectfirst.springbootproject.services.BookService;
 
 @RestController
+@RequestMapping("BankData")
 public class Bookcontroller {
 	
 	@Autowired
@@ -56,6 +59,5 @@ public class Bookcontroller {
 			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
 	
 }
